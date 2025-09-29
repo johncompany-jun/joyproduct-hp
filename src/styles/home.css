@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   padding-top: clamp(4rem, 10vw, 6.5rem);
-  padding-bottom: clamp(6rem, 12vw, 8.5rem);
+  padding-bottom: clamp(3.5rem, 8vw, 5rem);
   overflow: hidden;
 }
 
@@ -262,6 +262,22 @@
   box-shadow: var(--shadow-lg);
 }
 
+.section--compact-top {
+  padding-top: clamp(1.8rem, 4vw, 2.6rem) !important;
+}
+
+.section--compact-bottom {
+  padding-bottom: clamp(1.8rem, 4vw, 2.6rem) !important;
+}
+
+.section--tight-top {
+  padding-top: clamp(1.4rem, 3vw, 2rem) !important;
+}
+
+.section--tight-bottom {
+  padding-bottom: clamp(1.4rem, 3vw, 2rem) !important;
+}
+
 @keyframes heroSlide {
   0% {
     opacity: 0;
@@ -296,6 +312,13 @@
   margin-top: 2rem;
   display: grid;
   gap: 1.2rem;
+}
+
+.news__lede {
+  margin-top: clamp(0.8rem, 2vw, 1.4rem);
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 .news-card {
@@ -452,6 +475,86 @@
   color: var(--color-muted);
   font-size: 0.9rem;
   line-height: 1.8;
+}
+
+.partner-services__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.partner-services__grid {
+  margin-top: clamp(1.8rem, 4vw, 2.4rem);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1.4rem, 4vw, 2rem);
+}
+
+.partner-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(215, 220, 226, 0.55);
+  overflow: hidden;
+  display: grid;
+}
+
+.partner-card__media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.partner-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.partner-card__body {
+  display: grid;
+  gap: 0.8rem;
+  padding: clamp(1.6rem, 4vw, 2rem);
+}
+
+.partner-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(0, 89, 255, 0.12);
+  color: var(--color-primary);
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.partner-card__body h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.partner-card__body p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.partner-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.partner-card__link:hover {
+  opacity: 0.8;
 }
 
 .contact__grid {
@@ -627,5 +730,13 @@
   .gallery__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 4px;
+  }
+
+  .partner-services__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .partner-card__media {
+    aspect-ratio: 3 / 2;
   }
 }

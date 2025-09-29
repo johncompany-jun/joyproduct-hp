@@ -1,0 +1,224 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, CONTACT_INFO } from '../consts';
+import ContactSection from '../components/ContactSection.astro';
+import '../styles/services.css';
+import '../styles/home.css';
+
+const hero = {
+  title: 'デジタルサイネージ導入支援',
+  lead:
+    '店頭や施設、オフィスの情報発信をデジタルサイネージでアップデート。企画・機材選定・配信設計・運用支援までワンストップでサポートします。',
+  badge: 'SERVICE',
+  image: {
+    src: '/images/gallery-4.jpg',
+    alt: '店内で稼働するデジタルサイネージのイメージ'
+  }
+};
+
+const highlights = [
+  {
+    title: '店舗・施設の魅力をリアルタイム発信',
+    description:
+      'キャンペーンやタイムセール、施設案内などを即時に切り替え。紙のポスターよりも訴求力のある演出で来店促進につなげます。',
+    points: [
+      '静止画・動画・テロップを柔軟に組み合わせ',
+      '複数拠点への一括配信にも対応',
+      'スケジュール配信で曜日・時間帯ごとに出し分け'
+    ]
+  },
+  {
+    title: '運用の手間を最小限に',
+    description:
+      'テンプレート化したコンテンツや遠隔更新ツールを活用して、現場スタッフでも簡単に運用できる仕組みを構築します。',
+    points: [
+      'コンテンツテンプレートの作成・更新代行',
+      'クラウドCMSによる遠隔配信管理',
+      '運用マニュアル・研修の提供'
+    ]
+  },
+  {
+    title: '設置環境に合わせた機器選定',
+    description:
+      '屋内外の明るさや視認性、スペースに合わせて最適なディスプレイ・プレーヤーを選定。既存什器との組み合わせ提案も可能です。',
+    points: [
+      '屋外対応・高輝度ディスプレイの手配',
+      '縦型・壁掛け・マルチディスプレイにも対応',
+      '既存ネットワーク/電源の調査と整備'
+    ]
+  }
+];
+
+const plans = [
+  {
+    name: 'スタータープラン',
+    meta: 'スモールスタートや単店導入に',
+    features: [
+      '43〜55インチクラスのディスプレイ1台',
+      'STB・配信ソフトのセットアップ',
+      '運用レクチャー（1回）'
+    ]
+  },
+  {
+    name: 'マルチロケーションプラン',
+    meta: '複数拠点・本部配信に',
+    features: [
+      '複数台ディスプレイの一括導入',
+      'クラウドCMS構築とアカウント設計',
+      '年間サポート/コンテンツ更新代行'
+    ]
+  },
+  {
+    name: 'カスタムプラン',
+    meta: '特殊筐体・屋外設置などに',
+    features: [
+      '収納什器・スタンドの設計/施工',
+      '防塵・防滴、防犯対策を含む環境整備',
+      'センシング連動やタッチパネルにも対応'
+    ]
+  }
+];
+
+const flow = [
+  {
+    title: 'ヒアリング・現地調査',
+    body: '目的・設置環境・運用体制を確認し、必要な機材やコンテンツ方針を整理します。'
+  },
+  {
+    title: '機器選定・構成提案',
+    body: '画面サイズや台数、配信方法、ネットワーク構成を含む具体的な導入プランをご提示します。'
+  },
+  {
+    title: '導入作業・初期設定',
+    body: '設置工事から配信システムのセットアップ、テスト配信まで一貫して対応します。'
+  },
+  {
+    title: '運用スタート・サポート',
+    body: '運用マニュアル整備と担当者レクチャーを実施。導入後のコンテンツ運用や障害対応もサポートします。'
+  }
+];
+
+const faq = [
+  {
+    q: '既存のディスプレイを使えますか？',
+    a: '映像入力端子や稼働時間などの条件を満たしていれば再利用が可能です。現地での動作確認を行い、必要に応じて再設定や映像機器の追加をご提案します。'
+  },
+  {
+    q: 'コンテンツ制作もお願いできますか？',
+    a: 'テンプレート制作から定期的な更新代行まで承ります。社内で更新される場合も、使いやすい編集フォーマットをご用意します。'
+  },
+  {
+    q: '遠隔地の複数店舗をまとめて管理したい',
+    a: 'クラウド型CMSを採用することで、本部からスケジュール配信や緊急告知の一斉配信が可能です。端末の稼働状況もダッシュボードで確認できます。'
+  }
+];
+
+const contactInfo = CONTACT_INFO;
+---
+
+<MainLayout
+  title={`${SITE_TITLE} | デジタルサイネージ導入支援`}
+  description={`${SITE_DESCRIPTION} デジタルサイネージ導入支援サービスのご案内。企画から運用までワンストップでサポートします。`}
+>
+  <section class="section service-hero" id="digital-signage">
+    <div class="container service-hero__grid">
+      <div class="service-hero__content">
+        <span class="service-hero__badge">{hero.badge}</span>
+        <h1 class="service-hero__title">{hero.title}</h1>
+        <p class="service-hero__lead">{hero.lead}</p>
+        <div class="service-hero__cta">
+          <a class="primary" href="#signage-contact">お問い合わせ</a>
+          <a class="secondary" href="#service-flow">導入フローを見る</a>
+        </div>
+      </div>
+      <div class="service-hero__media" aria-hidden="true">
+        <img src={hero.image.src} alt={hero.image.alt} loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section service-section" id="service-overview">
+    <div class="container">
+      <span class="tag">OVERVIEW</span>
+      <h2 class="section__title">現場の課題に寄り添う導入プラン</h2>
+      <p class="service-section__intro">
+        ディスプレイの選定や設置工事、配信システムの構築、コンテンツ制作まで。JOYPRODUCTが蓄積してきた店舗運営・ITサポートの知見を活かし、現場で運用しやすいデジタルサイネージ環境をトータルで設計します。
+      </p>
+      <div class="service-card-grid">
+        {highlights.map((item) => (
+          <article class="service-card">
+            <span class="service-card__meta">FEATURE</span>
+            <h3 class="service-card__title">{item.title}</h3>
+            <p>{item.description}</p>
+            <ul class="service-list">
+              {item.points.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section service-section service-section--alt" id="service-plans">
+    <div class="container">
+      <span class="tag">PLAN</span>
+      <h2 class="section__title">導入規模に合わせたプラン</h2>
+      <div class="service-card-grid">
+        {plans.map((plan) => (
+          <article class="service-card">
+            <span class="service-card__meta">{plan.meta}</span>
+            <h3 class="service-card__title">{plan.name}</h3>
+            <ul class="service-list">
+              {plan.features.map((feature) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <p class="service-note">
+        ※ 機材構成や設置条件によりお見積りが変動いたします。現地調査の上で最適なプランをご提案いたします。
+      </p>
+    </div>
+  </section>
+
+  <section class="section service-section" id="service-flow">
+    <div class="container">
+      <span class="tag">FLOW</span>
+      <h2 class="section__title">導入までの流れ</h2>
+      <div class="service-steps">
+        {flow.map((step) => (
+          <div class="service-step">
+            <strong>{step.title}</strong>
+            <p>{step.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section service-section service-section--alt" id="service-faq">
+    <div class="container">
+      <span class="tag">FAQ</span>
+      <h2 class="section__title">よくあるご質問</h2>
+      <div class="service-faq">
+        {faq.map((item) => (
+          <article class="service-faq__item">
+            <h3>Q. {item.q}</h3>
+            <p>{item.a}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactSection
+    id="signage-contact"
+    title="デジタルサイネージのご相談"
+    subtitle="設置環境の確認からコンテンツ運用まで、お気軽にお問い合わせください。"
+    contactInfo={contactInfo}
+    formName="digital-signage-contact"
+  />
+</MainLayout>

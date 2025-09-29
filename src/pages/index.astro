@@ -1,6 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, CONTACT_INFO } from '../consts';
 import HeroCampaign from '../components/HeroCampaign.astro';
 import ContactSection from '../components/ContactSection.astro';
 import '../styles/home.css';
@@ -165,18 +165,25 @@ const windowUpgradeSteps = [
   'ご自身でのアップグレードが難しい際も丁寧に対応'
 ];
 
-const contactInfo = [
-  { label: '店舗名', value: 'パソコンショップ・ジョイプロダクト' },
+const contactInfo = CONTACT_INFO;
+
+const partnerServices = [
   {
-    label: '住所',
-    value: [
-      '〒602-8205 京都府京都市上京区中立売通松屋町西入新白水丸町462-57',
-      'プラネシア中立売101'
-    ]
+    title: 'デジタルサイネージ導入支援',
+    description:
+      '店頭や施設の情報発信を強化。企画・機材選定・導入・運用までワンストップでサポートします。',
+    link: '/digital-signage',
+    badge: 'SIGNAGE',
+    image: '/images/gallery-4.jpg'
   },
-  { label: '運営会社', value: '合同会社 ジョイプロダクト' },
-  { label: '電話', value: '075-334-6522', href: 'tel:0753346522' },
-  { label: '営業時間', value: '月〜金：10:00 - 18:00 / 土・日・祝：休業' }
+  {
+    title: 'リプラス特急データ復旧',
+    description:
+      'Re+PLUS と連携し、重度障害メディアの復旧に対応。初期診断無料でスピーディにお見積りします。',
+    link: '/replus-data-recovery',
+    badge: 'DATA',
+    image: '/images/gallery-6.jpg'
+  }
 ];
 ---
 
@@ -221,22 +228,20 @@ const contactInfo = [
         <img src="/images/hero.jpg" alt="JOYPRODUCT 店舗の展示" loading="lazy" />
       </div>
     </div>
-    <div class="container hero__campaign-container">
-      <HeroCampaign
-        title="Windows11 アップグレードサポート"
-        description="Windows 10 のサポートは 2025年10月14日で終了。用途とスペックを丁寧に診断し、最適なアップグレード方法をご提案します。"
-        steps={windowUpgradeSteps}
-        image={heroCampaignImage}
-      />
-    </div>
   </section>
 
-  <section class="section" id="news">
+  <section class="section section--tight-top section--tight-bottom" id="news">
     <div class="container">
       <div class="news__header">
         <span class="tag">NEWS</span>
         <h2 class="section__title">店舗からのお知らせ</h2>
         <p class="section__subtitle">入荷情報やサポート情報など、最新ニュースを随時更新しています。</p>
+      </div>
+      <div class="news__lede">
+        <p>
+          新入荷製品の速報や季節のキャンペーン情報など、JOYPRODUCTからのお知らせを随時発信しています。
+          お近くのお客様も遠方のお客様もぜひチェックしてください。
+        </p>
       </div>
       <div class="news__list">
         {newsItems.map((item) => (
@@ -256,6 +261,17 @@ const contactInfo = [
           </article>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="section section--tight-top" id="campaign">
+    <div class="container hero__campaign-container">
+      <HeroCampaign
+        title="Windows11 アップグレードサポート"
+        description="Windows 10 のサポートは 2025年10月14日で終了。用途とスペックを丁寧に診断し、最適なアップグレード方法をご提案します。"
+        steps={windowUpgradeSteps}
+        image={heroCampaignImage}
+      />
     </div>
   </section>
 
@@ -279,6 +295,36 @@ const contactInfo = [
                 <li>{point}</li>
               ))}
             </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section partner-services" id="partner-services">
+    <div class="container">
+      <div class="partner-services__header">
+        <span class="tag">PARTNER SERVICE</span>
+        <h2 class="section__title">専門パートナーと連携した取次サービス</h2>
+        <p class="section__subtitle">
+          JOYPRODUCTが窓口となり、デジタルサイネージ導入や重度データ復旧など専門領域のサービスもスムーズにご案内します。
+        </p>
+      </div>
+      <div class="partner-services__grid">
+        {partnerServices.map((service) => (
+          <article class="partner-card">
+            <figure class="partner-card__media">
+              <img src={service.image} alt={service.title} loading="lazy" />
+            </figure>
+            <div class="partner-card__body">
+              <span class="partner-card__badge">{service.badge}</span>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <a class="partner-card__link" href={service.link}>
+                詳しく見る
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
           </article>
         ))}
       </div>

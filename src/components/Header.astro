@@ -3,10 +3,11 @@ const navLinks = [
   { label: 'HOME', href: '#home' },
   { label: 'NEWS', href: '#news' },
   { label: 'SERVICE', href: '#services' },
+  { label: 'PARTNER-SERVICE', href: '#partner-services' },
   { label: 'GALLERY', href: '#gallery' },
   { label: 'MENU', href: '#menu' },
   { label: 'CONTACT', href: '#contact' },
-  { label: 'ACCESS MAP', href: '#access-map' }
+  { label: 'ACCESS-MAP', href: '#access-map' }
 ];
 ---
 
@@ -90,23 +91,24 @@ const navLinks = [
   .header__nav {
     position: relative;
     display: flex;
-    align-items: center;
-    gap: 2rem;
+    align-items: flex-end;
+    gap: 1.5rem;
   }
 
   .nav {
     display: flex;
-    align-items: center;
-    gap: 2rem;
+    align-items: flex-end;
   }
 
   .nav ul {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    gap: 0.6rem 1.6rem;
     list-style: none;
-    gap: 1.4rem;
     margin: 0;
     padding: 0;
+    justify-content: end;
+    text-align: right;
   }
 
   .nav a {
@@ -192,9 +194,11 @@ const navLinks = [
     }
 
     .nav ul {
+      display: flex;
       flex-direction: column;
       gap: 1.1rem;
       align-items: flex-start;
+      text-align: left;
     }
 
     .nav a {

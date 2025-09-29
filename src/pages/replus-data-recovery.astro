@@ -1,0 +1,218 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, CONTACT_INFO } from '../consts';
+import ContactSection from '../components/ContactSection.astro';
+import '../styles/services.css';
+import '../styles/home.css';
+
+const hero = {
+  title: 'リプラス データ復旧サービス',
+  lead:
+    '法人・官公庁にも採用される Re+PLUS（リプラス）と連携し、重度障害メディアのデータ復旧に対応。初期診断無料で、最短当日のお見積りをご案内します。',
+  badge: 'DATA RECOVERY',
+  image: {
+    src: '/images/gallery-6.jpg',
+    alt: 'データ復旧作業用のストレージとツール'
+  }
+};
+
+const benefits = [
+  {
+    title: 'リプラス認定パートナーとしての安心',
+    description:
+      '最新設備を備えたクリーンルームを持つ Re+PLUS と連携。高度な作業が必要なケースでも、確かな技術と実績でデータを救出します。',
+    points: [
+      '国内トップクラスの復旧成功率',
+      '論理障害・物理障害の両方に対応',
+      '初期診断・お見積りは無料'
+    ]
+  },
+  {
+    title: '幅広い媒体に対応',
+    description:
+      'HDD/SSD や NAS、RAID 構成、USBメモリ、SDカード、スマートフォンなど多様な媒体で復旧実績があります。業務システムのトラブルもご相談ください。',
+    points: [
+      'Windows / macOS / Linux を問わず対応',
+      '監視カメラ・POS・医療機器など専用機も相談可能',
+      'RAID再構築や仮想サーバーからの抽出にも対応'
+    ]
+  },
+  {
+    title: '情報管理体制と秘密保持',
+    description:
+      'お預かりした媒体はセキュアな環境下で管理。復旧作業時の取り扱いは NDA に準拠し、機密情報や個人情報を守ります。',
+    points: [
+      '入退室管理された専用ルームでの作業',
+      'データ納品後は安全に破棄',
+      '機密保持契約（NDA）にも対応'
+    ]
+  }
+];
+
+const pricingRows = [
+  {
+    category: '軽度〜中度障害',
+    scope: '論理障害・軽度な物理障害（HDD/SSD/USB/SDなど）',
+    price: '33,000円〜 （税込）'
+  },
+  {
+    category: '重度障害',
+    scope: 'ヘッドクラッシュ・モーター不良・RAID崩壊など',
+    price: '要お見積り'
+  },
+  {
+    category: 'スマートフォン / タブレット',
+    scope: 'iPhone・Android のデータ抽出',
+    price: '27,500円〜 （税込）'
+  }
+];
+
+const flow = [
+  {
+    title: 'お預かり・初期診断',
+    body: 'メディアの症状をヒアリングし、専用設備で診断。復旧可否と概算費用・納期をご案内します（ここまで無料）。'
+  },
+  {
+    title: 'お見積り・ご承諾',
+    body: '正式なお見積りを提示し、ご承諾後に復旧作業へ進みます。見積りにご納得いただけない場合はキャンセル可能です。'
+  },
+  {
+    title: 'データ復旧作業',
+    body: '障害内容に合わせて適切な復旧プロセスを実施。進捗は随時ご報告し、復旧できたデータのリストもご確認いただけます。'
+  },
+  {
+    title: '納品・アフターサポート',
+    body: '復旧データを外付けHDDなどに格納して納品。納品後のデータ移行や再発防止策のご相談も承ります。'
+  }
+];
+
+const faq = [
+  {
+    q: '電源を入れると異音がします。復旧できますか？',
+    a: '物理障害の可能性が高いため、これ以上の通電は避けてお預けください。ヘッド交換などの作業によりデータを救出できるケースがあります。'
+  },
+  {
+    q: '復旧できなかった場合の費用は？',
+    a: '復旧不可の場合は費用をいただきません（返送料無料）。ただし媒体系や著しい損傷状況によっては事前に別途費用が発生するケースもあるため、診断時にご案内します。'
+  },
+  {
+    q: '法人のサーバー停止で困っています。至急対応は可能？',
+    a: '緊急案件にも対応しています。サーバー構成を伺った上で、迅速な持ち込み・出張回収・宅配回収など最適な方法をご提案します。'
+  }
+];
+
+const contactInfo = CONTACT_INFO;
+---
+
+<MainLayout
+  title={`${SITE_TITLE} | リプラス データ復旧サービス`}
+  description={`${SITE_DESCRIPTION} Re+PLUS（リプラス）と連携したデータ復旧サービスのご案内。重度障害メディアにも対応します。`}
+>
+  <section class="section service-hero" id="replus-recovery">
+    <div class="container service-hero__grid">
+      <div class="service-hero__content">
+        <span class="service-hero__badge">{hero.badge}</span>
+        <h1 class="service-hero__title">{hero.title}</h1>
+        <p class="service-hero__lead">{hero.lead}</p>
+        <div class="service-hero__cta">
+          <a class="primary" href="#replus-contact">無料診断を申し込む</a>
+          <a class="secondary" href="#replus-flow">復旧の流れを見る</a>
+        </div>
+      </div>
+      <div class="service-hero__media" aria-hidden="true">
+        <img src={hero.image.src} alt={hero.image.alt} loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section service-section" id="replus-benefits">
+    <div class="container">
+      <span class="tag">STRENGTH</span>
+      <h2 class="section__title">リプラス連携で高難度の復旧にも対応</h2>
+      <p class="service-section__intro">
+        JOYPRODUCT は Re+PLUS データ復旧サービスの正規取次店です。京都・関西エリアのお客様を中心に、店頭へのお持ち込みはもちろん、宅配・出張での回収にも対応。緊急性の高い案件は最優先で手配いたします。
+      </p>
+      <div class="service-card-grid">
+        {benefits.map((item) => (
+          <article class="service-card">
+            <span class="service-card__meta">BENEFIT</span>
+            <h3 class="service-card__title">{item.title}</h3>
+            <p>{item.description}</p>
+            <ul class="service-list">
+              {item.points.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section service-section service-section--alt" id="replus-pricing">
+    <div class="container">
+      <span class="tag">PRICE</span>
+      <h2 class="section__title">料金の目安</h2>
+      <table class="service-table">
+        <thead>
+          <tr>
+            <th scope="col">障害レベル</th>
+            <th scope="col">対象/症状例</th>
+            <th scope="col">料金目安</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pricingRows.map((row) => (
+            <tr>
+              <th scope="row">{row.category}</th>
+              <td>{row.scope}</td>
+              <td>{row.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="service-note">
+        ※ 復旧料金はメディアの容量・障害状況によって変動します。成功報酬型のため、復旧不可の場合は費用をいただきません。<br />
+        ※ 緊急対応や出張回収などのオプションもご用意しています。詳しくはお問い合わせください。
+      </p>
+    </div>
+  </section>
+
+  <section class="section service-section" id="replus-flow">
+    <div class="container">
+      <span class="tag">FLOW</span>
+      <h2 class="section__title">復旧の流れ</h2>
+      <div class="service-steps">
+        {flow.map((step) => (
+          <div class="service-step">
+            <strong>{step.title}</strong>
+            <p>{step.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section service-section service-section--alt" id="replus-faq">
+    <div class="container">
+      <span class="tag">FAQ</span>
+      <h2 class="section__title">よくあるご質問</h2>
+      <div class="service-faq">
+        {faq.map((item) => (
+          <article class="service-faq__item">
+            <h3>Q. {item.q}</h3>
+            <p>{item.a}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactSection
+    id="replus-contact"
+    title="データ復旧のご相談"
+    subtitle="突然のトラブルでもお任せください。媒体の種類や症状をお伺いし、最適な復旧プランをご提案します。"
+    contactInfo={contactInfo}
+    formName="replus-data-recovery"
+  />
+</MainLayout>
