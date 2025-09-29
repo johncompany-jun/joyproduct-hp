@@ -1,0 +1,121 @@
+---
+export interface ContactInfoItem {
+  label: string;
+  value: string | string[];
+  href?: string;
+}
+
+export interface Props {
+  id?: string;
+  tag?: string;
+  title: string;
+  subtitle?: string;
+  infoTitle?: string;
+  contactInfo: ContactInfoItem[];
+  formName?: string;
+}
+
+const {
+  id = 'contact',
+  tag = 'CONTACT',
+  title,
+  subtitle = '',
+  infoTitle = '店舗情報',
+  contactInfo,
+  formName = 'contact'
+} = Astro.props;
+
+const honeypotFieldName = 'bot-field';
+---
+
+<section class="section" id={id}>
+  <div class="container">
+    <div class="contact__header">
+      {tag ? <span class="tag">{tag}</span> : null}
+      <h2 class="section__title">{title}</h2>
+      {subtitle ? <p class="section__subtitle">{subtitle}</p> : null}
+    </div>
+    <div class="contact__grid">
+      <div class="contact__info">
+        <h3>{infoTitle}</h3>
+        <ul class="contact__list">
+          {contactInfo.map((item) => (
+            <li>
+              <strong>{item.label}</strong>
+              {Array.isArray(item.value) ? (
+                <span set:html={item.value.join('<br />')}></span>
+              ) : item.href ? (
+                <a href={item.href}>{item.value}</a>
+              ) : (
+                item.value
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <form
+        class="contact__form"
+        name={formName}
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot={honeypotFieldName}
+      >
+        <input type="hidden" name="form-name" value={formName} />
+        <p class="sr-only">
+          <label>
+            こちらには記入しないでください
+            <input name={honeypotFieldName} />
+          </label>
+        </p>
+        <div class="contact__form-row">
+          <div class="contact__field">
+            <label for={`${id}-first-name`}>名</label>
+            <input
+              id={`${id}-first-name`}
+              type="text"
+              name="first-name"
+              autocomplete="given-name"
+            />
+          </div>
+          <div class="contact__field">
+            <label for={`${id}-last-name`}>姓</label>
+            <input
+              id={`${id}-last-name`}
+              type="text"
+              name="last-name"
+              autocomplete="family-name"
+            />
+          </div>
+        </div>
+        <div class="contact__field">
+          <label for={`${id}-email`}>メールアドレス</label>
+          <input
+            id={`${id}-email`}
+            type="email"
+            name="email"
+            autocomplete="email"
+            required
+          />
+        </div>
+        <div class="contact__field">
+          <label for={`${id}-subject`}>件名</label>
+          <input
+            id={`${id}-subject`}
+            type="text"
+            name="subject"
+          />
+        </div>
+        <div class="contact__field">
+          <label for={`${id}-message`}>メッセージ</label>
+          <textarea
+            id={`${id}-message`}
+            name="message"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+        <button class="contact__submit" type="submit">送信する</button>
+      </form>
+    </div>
+  </div>
+</section>
