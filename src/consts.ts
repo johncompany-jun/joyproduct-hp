@@ -1,5 +1,2 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
-
-export const SITE_TITLE = 'Astro Blog';
-export const SITE_DESCRIPTION = 'Welcome to my website!';
+export const SITE_TITLE = 'JOYPRODUCT | パソコンショップ ジョイプロダクト';
+export const SITE_DESCRIPTION = '京都市上京区のパソコンショップ ジョイプロダクト。販売・修理・データー復旧・ITサポートまで、地域密着で丁寧にサポートいたします。';

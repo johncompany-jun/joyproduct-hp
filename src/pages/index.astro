@@ -1,49 +1,393 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import MainLayout from '../layouts/MainLayout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import '../styles/home.css';
+
+const heroHighlights = [
+  'パソコン販売・修理',
+  'インターネットサポート',
+  'データー復旧・ウイルス削除 etc'
+];
+
+const newsItems = [
+  {
+    date: '2025.9.29',
+    title: '入荷情報：Panasonic タフブック FZ-G2 中古美品が入荷いたしました。',
+    body: []
+  },
+  {
+    date: '2025.9.4',
+    title: 'Windows11の新品・中古パソコン各種取り扱っております。',
+    body: [
+      'サポート終了が近づいてきてお問い合わせが増えております。お早めにご検討ください。',
+      '煩わしいデーター移行、設定等もすべてまとめてジョイプロダクトにどうぞお任せください！'
+    ]
+  },
+  {
+    date: '2025.5.12',
+    title: '業務案内：iPhone、iPad、Android、Mac等の修理やデーター復旧も対応致します。',
+    body: []
+  },
+  {
+    date: '2025.2.18',
+    title: '入荷情報：Panasonic タフブック CF-20 / CF-33 中古良品が入荷いたしました。',
+    body: []
+  },
+  {
+    date: '2024.06.12',
+    title: '新店舗オープン致しました！ライフ西陣店様 西隣のビル階段降りてすぐ左になります。',
+    body: ['EARTH CAFE様の横になります。どうぞお気軽にお越しください。']
+  }
+];
+
+const services = [
+  {
+    icon: '🛒',
+    title: '新品/中古PC・家電 販売/買取',
+    description: 'オールメーカー新品・中古販売。購入後もしっかりサポートいたします。',
+    points: [
+      'ご希望の機種を全国からお探しします',
+      '中古パソコン・中古家電の買取も対応',
+      '査定無料でお気軽にご相談ください'
+    ]
+  },
+  {
+    icon: '🛠️',
+    title: 'パソコン修理・メンテナンス',
+    description: 'スピード診断から部品交換まで、トラブル内容に合わせて最適な修理プランをご提案します。',
+    points: [
+      'パソコンクイック診断とOSリカバリ',
+      'SSD/HDD換装・BTOパソコン組立',
+      'ソフト・ドライバインストール、内部分解清掃'
+    ]
+  },
+  {
+    icon: '💾',
+    title: 'データー復旧',
+    description: '起動しなくなったパソコンや各種メディアから大切なデーターを抽出します。',
+    points: [
+      'HDD / SSD / USBメモリー / SDカード対応',
+      '初期診断無料で安心',
+      '緊急案件もご相談ください'
+    ]
+  },
+  {
+    icon: '🏢',
+    title: '各種IT機器販売・設置サポート',
+    description: '情報通信機器やオフィスのOA機器導入から設定までトータルでサポートします。',
+    points: [
+      '業務フローに合わせたIT導入をご提案',
+      '中古機器活用でコストを最適化',
+      '業務効率化・自動化のご相談も歓迎'
+    ]
+  },
+  {
+    icon: '🛡️',
+    title: 'ウイルス削除',
+    description: 'ウイルス感染による不具合、怪しい画面、急な動作低下などを迅速に診断・駆除します。',
+    points: [
+      'ウイルス感染駆除・有害サイト対策',
+      'セキュリティソフト導入のアドバイス',
+      '安全な運用方法も丁寧にサポート'
+    ]
+  },
+  {
+    icon: '🚗',
+    title: '出張サポート',
+    description: 'ご自宅やオフィスへ専門スタッフが訪問し、その場で問題を解決します。',
+    points: [
+      '訪問基本料金内で幅広くサポート',
+      '設置・設定・トラブル解決まで対応',
+      '業務時間外や急ぎの案件も柔軟に調整'
+    ]
+  }
+];
+
+const galleryImages = [
+  { src: '/images/gallery-1.jpg', alt: '店内ディスプレイの様子' },
+  { src: '/images/gallery-2.jpg', alt: '修理スペースの写真' },
+  { src: '/images/gallery-3.jpg', alt: '整備されたノートパソコン' },
+  { src: '/images/gallery-4.jpg', alt: '店舗入口の外観' },
+  { src: '/images/gallery-5.jpg', alt: '周辺道路から見た店舗' },
+  { src: '/images/gallery-6.jpg', alt: '修理用機材のディテール' }
+];
+
+const pricingColumns = [
+  {
+    title: '診断・サポート',
+    items: [
+      { name: 'データー復旧サービス', price: '初期診断料無料' },
+      { name: 'パソコンクイック診断', price: '500円' },
+      { name: '店頭お困りサポート (1時間)', price: '3,000円' },
+      { name: 'PCトラブル診断 (預かり作業)', price: '3,000円〜' }
+    ]
+  },
+  {
+    title: '修理・アップグレード',
+    items: [
+      { name: 'ウイルス感染削除', price: '6,000円〜' },
+      { name: 'OSリカバリ作業', price: '8,000円〜' },
+      { name: 'OSの最新アップデート', price: '4,000円〜' },
+      { name: 'BIOSアップデート', price: '6,000円〜' },
+      { name: '液晶パネル交換修理', price: '18,000円〜' },
+      { name: 'SSD交換サービス (データーコピー代込)', price: '18,000円〜 / SSD代別途' }
+    ]
+  },
+  {
+    title: '訪問・セットアップ',
+    items: [
+      { name: '出張サポート (訪問基本料金1時間)', price: '5,000円' },
+      { name: '追加1時間ごと', price: '+3,000円' },
+      { name: 'パソコン初期設定パック', price: '12,000円' },
+      { name: 'データー移行 (10GB以上は別途お見積り)', price: '内容により変動' }
+    ]
+  }
+];
+
+const windowUpgradeSteps = [
+  'データーはそのままで Windows 11 へアップグレード',
+  '古くて遅いパソコンの買い替えもサポート',
+  'ご自身でのアップグレードが難しい際も丁寧に対応'
+];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<MainLayout
+  title={`${SITE_TITLE} | 京都・上京区のパソコン販売・修理ショップ`}
+  description={SITE_DESCRIPTION}
+>
+  <section class="section hero" id="home">
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <span class="tag hero__badge">京都・上京区のPC専門店</span>
+        <h1 class="hero__title">
+          パソコン・スマホの「困った」は<br />
+          JOYPRODUCTにお任せください
+        </h1>
+        <p class="hero__lead">
+          販売・修理・データー復旧・ITサポートまで。地域密着で、お客様の用途やご予算に合わせたベストな解決策をご提案します。
+        </p>
+        <ul class="hero__list">
+          {heroHighlights.map((item, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <div class="hero__cta">
+          <a class="primary" href="#contact">お問い合わせ</a>
+          <a class="secondary" href="tel:0753346522">お電話 075-334-6522</a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <img src="/images/hero.jpg" alt="JOYPRODUCT 店舗の展示" loading="lazy" />
+        <div class="hero__overlay">
+          <h3>Windows11 アップグレードサポート</h3>
+          <p>
+            Windows 10 のサポートは 2025年10月14日で終了。用途とスペックを丁寧に診断し、最適なアップグレード方法をご提案します。
+          </p>
+          <ul>
+            {windowUpgradeSteps.map((line) => (
+              <li>{line}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="news">
+    <div class="container">
+      <div class="news__header">
+        <span class="tag">NEWS</span>
+        <h2 class="section__title">店舗からのお知らせ</h2>
+        <p class="section__subtitle">入荷情報やサポート情報など、最新ニュースを随時更新しています。</p>
+      </div>
+      <div class="news__list">
+        {newsItems.map((item) => (
+          <article class="news-card">
+            <div class="news-card__meta">
+              <span class="news-card__date">{item.date}</span>
+              <span class="news-card__tag">お知らせ</span>
+            </div>
+            <h3 class="news-card__title">{item.title}</h3>
+            {item.body.length > 0 ? (
+              <div class="news-card__body">
+                {item.body.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+            ) : null}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="services__header">
+        <span class="tag">SERVICE</span>
+        <h2 class="section__title">幅広いメニューで、お客様のITを支えます</h2>
+        <p class="section__subtitle">診断から復旧、導入支援までトータルサポート。法人・個人問わずお気軽にご相談ください。</p>
+      </div>
+      <div class="services__grid">
+        {services.map((service) => (
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">{service.icon}</div>
+            <div>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </div>
+            <ul>
+              {service.points.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="gallery__header">
+        <span class="tag">GALLERY</span>
+        <h2 class="section__title">店舗ギャラリー</h2>
+        <p class="section__subtitle">修理スペースや展示の様子、入荷製品の一部をご紹介します。</p>
+      </div>
+      <div class="gallery__grid">
+        {galleryImages.map((image) => (
+          <figure>
+            <img src={image.src} alt={image.alt} loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="menu">
+    <div class="container">
+      <div class="menu__header">
+        <span class="tag">MENU</span>
+        <h2 class="section__title">料金・価格表</h2>
+        <p class="section__subtitle">内容と機種により価格が変動する場合があります。詳細はお気軽にお問い合わせください。</p>
+      </div>
+      <div class="menu__layout">
+        {pricingColumns.map((column) => (
+          <article class="menu-card">
+            <h3>{column.title}</h3>
+            <div class="menu-card__items">
+              {column.items.map((item) => (
+                <div class="menu-line">
+                  <span>{item.name}</span>
+                  <strong>{item.price}</strong>
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="menu__note">
+        ※ 表示価格はすべて税別です。部品・材料等が必要な場合は別途費用がかかります。<br />
+        ※ サービス内容は一例です。その他「こんなことできる？」というご相談もお気軽にお寄せください。
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact__header">
+        <span class="tag">CONTACT</span>
+        <h2 class="section__title">お問い合わせ</h2>
+        <p class="section__subtitle">通常2営業日以内にメールでご返信いたします。お急ぎの方はお電話にてご連絡ください。</p>
+      </div>
+      <div class="contact__grid">
+        <div class="contact__info">
+          <h3>店舗情報</h3>
+          <ul class="contact__list">
+            <li>
+              <strong>店舗名</strong>
+              パソコンショップ・ジョイプロダクト
+            </li>
+            <li>
+              <strong>住所</strong>
+              〒602-8205 京都府京都市上京区中立売通松屋町西入新白水丸町462-57<br />
+              プラネシア中立売101
+            </li>
+            <li>
+              <strong>運営会社</strong>
+              合同会社 ジョイプロダクト
+            </li>
+            <li>
+              <strong>電話</strong>
+              <a href="tel:0753346522">075-334-6522</a>
+            </li>
+            <li>
+              <strong>営業時間</strong>
+              月〜金：10:00 - 18:00 / 土・日・祝：休業
+            </li>
+          </ul>
+        </div>
+        <form
+          class="contact__form"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="sr-only">
+            <label>
+              こちらには記入しないでください
+              <input name="bot-field" />
+            </label>
+          </p>
+          <div class="contact__form-row">
+            <div class="contact__field">
+              <label for="first-name">名</label>
+              <input id="first-name" type="text" name="first-name" autocomplete="given-name" />
+            </div>
+            <div class="contact__field">
+              <label for="last-name">姓</label>
+              <input id="last-name" type="text" name="last-name" autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="contact__field">
+            <label for="email">メールアドレス</label>
+            <input id="email" type="email" name="email" autocomplete="email" required />
+          </div>
+          <div class="contact__field">
+            <label for="subject">件名</label>
+            <input id="subject" type="text" name="subject" />
+          </div>
+          <div class="contact__field">
+            <label for="message">メッセージ</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button class="contact__submit" type="submit">送信する</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="access-map">
+    <div class="container">
+      <div class="map__header">
+        <span class="tag">ACCESS</span>
+        <h2 class="section__title">アクセスマップ</h2>
+        <p class="section__subtitle">ライフ西陣店様 西隣のビルの階段を降りてすぐ左手、EARTH CAFE様の横です。</p>
+      </div>
+      <div class="map__frame">
+        <iframe
+          title="JOYPRODUCT アクセスマップ"
+          src="https://www.google.com/maps?q=%E4%BA%AC%E9%83%BD%E5%BA%9C%E4%BA%AC%E9%83%BD%E5%B8%82%E4%B8%8A%E4%BA%AC%E5%8C%BA%E4%B8%AD%E7%AB%8B%E5%A3%B2%E9%80%9A%E6%9D%BE%E5%B1%8B%E7%94%BA%E8%A5%BF%E5%85%A5%E6%96%B0%E7%99%BD%E6%B0%B4%E4%B8%B8%E7%94%BA462-57&output=embed"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</MainLayout>
