@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import HeroCampaign from '../components/HeroCampaign.astro';
 import '../styles/home.css';
 
 const heroHighlights = [
@@ -9,13 +10,18 @@ const heroHighlights = [
   'データー復旧・ウイルス削除 etc'
 ];
 
-const showWindowsUpgrade = false;
-
 const heroBackgrounds = [
-  '/images/hero.jpg',
-  '/images/gallery-1.jpg',
-  '/images/gallery-3.jpg'
+  '/images/joshua-ng-1sSfrozgiFk-unsplash.jpg',
+  '/images/milad-fakurian-t_IkF_CNvSY-unsplash.jpg',
+  '/images/nathan-anderson-KHSPGJ3zP0M-unsplash.jpg',
+  '/images/olivier-collet-JMwCe3w7qKk-unsplash.jpg',
+  '/images/onur-binay-auf3GwpVaOM-unsplash.jpg'
 ];
+
+const heroCampaignImage = {
+  src: '/images/campaign/windows11-laptops.jpg',
+  alt: 'Windows 11 アップグレード対象のノートパソコンの写真コラージュ'
+};
 
 const newsItems = [
   {
@@ -198,20 +204,15 @@ const windowUpgradeSteps = [
       </div>
       <div class="hero__media">
         <img src="/images/hero.jpg" alt="JOYPRODUCT 店舗の展示" loading="lazy" />
-        {showWindowsUpgrade ? (
-          <div class="hero__overlay">
-            <h3>Windows11 アップグレードサポート</h3>
-            <p>
-              Windows 10 のサポートは 2025年10月14日で終了。用途とスペックを丁寧に診断し、最適なアップグレード方法をご提案します。
-            </p>
-            <ul>
-              {windowUpgradeSteps.map((line) => (
-                <li>{line}</li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
       </div>
+    </div>
+    <div class="container hero__campaign-container">
+      <HeroCampaign
+        title="Windows11 アップグレードサポート"
+        description="Windows 10 のサポートは 2025年10月14日で終了。用途とスペックを丁寧に診断し、最適なアップグレード方法をご提案します。"
+        steps={windowUpgradeSteps}
+        image={heroCampaignImage}
+      />
     </div>
   </section>
 

@@ -1,0 +1,42 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  steps: string[];
+  eyebrow?: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+}
+
+const {
+  title,
+  description,
+  steps,
+  eyebrow = 'キャンペーン',
+  image
+} = Astro.props;
+---
+
+<section class="hero-campaign" aria-label={`${title}のお知らせ`}>
+  <div class="hero-campaign__surface">
+    <div class="hero-campaign__content">
+      <header class="hero-campaign__header">
+        <span class="hero-campaign__badge">{eyebrow}</span>
+        <h3>{title}</h3>
+      </header>
+      <p>{description}</p>
+      <ul>
+        {steps.map((step) => (
+          <li>{step}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  {image ? (
+    <figure class="hero-campaign__figure" aria-hidden="true">
+      <img src={image.src} alt={image.alt} loading="lazy" />
+    </figure>
+  ) : null}
+</section>
