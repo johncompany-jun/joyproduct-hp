@@ -14,8 +14,8 @@ const navLinks = [
 <header class="site-header">
   <div class="container header__content">
     <a class="logo" href="#home" aria-label="JOYPRODUCT ホーム">
-      <span class="logo__mark">JOY</span>
-      <span class="logo__type">PRODUCT</span>
+      <img src="/images/logo1.jpg" alt="JOYPRODUCT ロゴ" loading="lazy" />
+      <span class="sr-only">JOYPRODUCT</span>
     </a>
     <div class="header__nav">
       <input type="checkbox" id="nav-toggle" class="nav__checkbox" />
@@ -68,24 +68,12 @@ const navLinks = [
   .logo {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    font-weight: 800;
-    letter-spacing: 0.28em;
-    font-size: 0.95rem;
-    color: var(--color-primary);
   }
 
-  .logo__mark {
-    background: var(--color-primary);
-    color: #fff;
-    padding: 0.55rem 0.65rem 0.45rem;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-  }
-
-  .logo__type {
-    color: var(--color-text);
+  .logo img {
+    display: block;
+    width: clamp(144px, 19vw, 192px);
+    height: auto;
   }
 
   .header__nav {

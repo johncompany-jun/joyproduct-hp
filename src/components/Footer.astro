@@ -11,8 +11,8 @@ const socialLinks = [
   <div class="container footer__grid">
     <div class="footer__brand">
       <a class="logo" href="#home" aria-label="JOYPRODUCT ホームへ戻る">
-        <span class="logo__mark">JOY</span>
-        <span class="logo__type">PRODUCT</span>
+        <img src="/images/logo1.jpg" alt="JOYPRODUCT ロゴ" loading="lazy" />
+        <span class="sr-only">JOYPRODUCT</span>
       </a>
       <p class="footer__copy">
         京都・上京区のパソコンショップ ジョイプロダクト。<br />
@@ -69,16 +69,14 @@ const socialLinks = [
   }
 
   .footer__brand .logo {
-    color: #fff;
+    display: inline-flex;
+    align-items: center;
   }
 
-  .footer__brand .logo__mark {
-    background: #fff;
-    color: var(--color-primary);
-  }
-
-  .footer__brand .logo__type {
-    color: rgba(255, 255, 255, 0.9);
+  .footer__brand .logo img {
+    width: clamp(117px, 18vw, 172px);
+    height: auto;
+    display: block;
   }
 
   .footer__copy {
