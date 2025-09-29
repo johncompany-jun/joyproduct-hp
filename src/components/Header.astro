@@ -31,14 +31,6 @@ const navLinks = [
             </li>
           ))}
         </ul>
-        <a
-          class="nav__login"
-          href="https://www.joyproduct.net/_members/login"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          ログイン
-        </a>
       </nav>
     </div>
   </div>
@@ -129,25 +121,6 @@ const navLinks = [
     color: var(--color-primary);
   }
 
-  .nav__login {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.65rem 1.3rem;
-    border-radius: 999px;
-    background: var(--color-primary);
-    color: #fff;
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-    font-weight: 600;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .nav__login:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 16px 22px rgba(0, 89, 255, 0.18);
-  }
-
   .nav__checkbox {
     position: absolute;
     width: 1px;
@@ -227,11 +200,6 @@ const navLinks = [
     .nav a {
       font-size: 0.82rem;
       letter-spacing: 0.12em;
-    }
-
-    .nav__login {
-      width: 100%;
-      justify-content: center;
     }
 
     .nav__checkbox:checked ~ .nav {
