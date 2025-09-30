@@ -2,10 +2,8 @@
 const navLinks = [
   { label: 'HOME', href: '#home' },
   { label: 'NEWS', href: '#news' },
-  { label: 'SERVICE', href: '#services' },
-  { label: 'PARTNER-SERVICE', href: '#partner-services' },
-  { label: 'GALLERY', href: '#gallery' },
-  { label: 'MENU', href: '#menu' },
+  { label: 'RECOMMEND', href: '#featured-products' },
+  { label: 'TECH BLOG', href: '#tech-blog' },
   { label: 'CONTACT', href: '#contact' },
   { label: 'ACCESS-MAP', href: '#access-map' }
 ];
@@ -90,7 +88,8 @@ const navLinks = [
 
   .nav ul {
     display: grid;
-    grid-template-columns: repeat(4, max-content);
+    grid-template-columns: repeat(3, max-content);
+    grid-auto-rows: auto;
     gap: 0.6rem 1.6rem;
     list-style: none;
     margin: 0;

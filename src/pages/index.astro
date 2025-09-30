@@ -1,7 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, CONTACT_INFO } from '../consts';
-import HeroCampaign from '../components/HeroCampaign.astro';
 import ContactSection from '../components/ContactSection.astro';
 import '../styles/home.css';
 
@@ -19,172 +18,174 @@ const heroBackgrounds = [
   '/images/onur-binay-auf3GwpVaOM-unsplash.jpg'
 ];
 
-const heroCampaignImage = {
-  src: '/images/campaign/windows11-laptops.jpg',
-  alt: 'Windows 11 アップグレード対象のノートパソコンの写真コラージュ'
-};
-
-const newsItems = [
+const storeAnnouncements = [
   {
-    date: '2025.9.29',
-    title: '入荷情報：Panasonic タフブック FZ-G2 中古美品が入荷いたしました。',
-    body: []
-  },
-  {
-    date: '2025.9.4',
-    title: 'Windows11の新品・中古パソコン各種取り扱っております。',
+    date: '2025.10.10',
+    title: '10月13日(日) 店舗イベント開催に伴う営業時間変更',
+    tag: '営業時間',
     body: [
-      'サポート終了が近づいてきてお問い合わせが増えております。お早めにご検討ください。',
-      '煩わしいデーター移行、設定等もすべてまとめてジョイプロダクトにどうぞお任せください！'
+      '店舗イベント準備のため、10月13日(日)は16:00閉店とさせていただきます。翌14日(月)より通常営業いたします。'
     ]
   },
   {
-    date: '2025.5.12',
-    title: '業務案内：iPhone、iPad、Android、Mac等の修理やデーター復旧も対応致します。',
-    body: []
-  },
-  {
-    date: '2025.2.18',
-    title: '入荷情報：Panasonic タフブック CF-20 / CF-33 中古良品が入荷いたしました。',
-    body: []
-  },
-  {
-    date: '2024.06.12',
-    title: '新店舗オープン致しました！ライフ西陣店様 西隣のビル階段降りてすぐ左になります。',
-    body: ['EARTH CAFE様の横になります。どうぞお気軽にお越しください。']
-  }
-];
-
-const services = [
-  {
-    icon: '🛒',
-    title: '新品/中古PC・家電 販売/買取',
-    description: 'オールメーカー新品・中古販売。購入後もしっかりサポートいたします。',
-    points: [
-      'ご希望の機種を全国からお探しします',
-      '中古パソコン・中古家電の買取も対応',
-      '査定無料でお気軽にご相談ください'
+    date: '2025.10.05',
+    title: '10月12日(土) 営業時間変更のお知らせ',
+    tag: '営業時間',
+    body: [
+      '機材メンテナンスのため、10月12日(土)は17:00閉店となります。翌13日(日)は通常営業いたします。'
     ]
   },
   {
-    icon: '🛠️',
-    title: 'パソコン修理・メンテナンス',
-    description: 'スピード診断から部品交換まで、トラブル内容に合わせて最適な修理プランをご提案します。',
-    points: [
-      'パソコンクイック診断とOSリカバリ',
-      'SSD/HDD換装・BTOパソコン組立',
-      'ソフト・ドライバインストール、内部分解清掃'
+    date: '2025.09.22',
+    title: '台風接近に伴う営業時間短縮について',
+    tag: '重要',
+    body: [
+      '台風接近のため、9月23日(月)は14:00閉店といたします。安全を第一にご来店ください。'
     ]
   },
   {
-    icon: '💾',
-    title: 'データー復旧',
-    description: '起動しなくなったパソコンや各種メディアから大切なデーターを抽出します。',
-    points: [
-      'HDD / SSD / USBメモリー / SDカード対応',
-      '初期診断無料で安心',
-      '緊急案件もご相談ください'
-    ]
-  },
-  {
-    icon: '🏢',
-    title: '各種IT機器販売・設置サポート',
-    description: '情報通信機器やオフィスのOA機器導入から設定までトータルでサポートします。',
-    points: [
-      '業務フローに合わせたIT導入をご提案',
-      '中古機器活用でコストを最適化',
-      '業務効率化・自動化のご相談も歓迎'
-    ]
-  },
-  {
-    icon: '🛡️',
-    title: 'ウイルス削除',
-    description: 'ウイルス感染による不具合、怪しい画面、急な動作低下などを迅速に診断・駆除します。',
-    points: [
-      'ウイルス感染駆除・有害サイト対策',
-      'セキュリティソフト導入のアドバイス',
-      '安全な運用方法も丁寧にサポート'
-    ]
-  },
-  {
-    icon: '🚗',
-    title: '出張サポート',
-    description: 'ご自宅やオフィスへ専門スタッフが訪問し、その場で問題を解決します。',
-    points: [
-      '訪問基本料金内で幅広くサポート',
-      '設置・設定・トラブル解決まで対応',
-      '業務時間外や急ぎの案件も柔軟に調整'
+    date: '2025.09.18',
+    title: '臨時休業のお知らせ（9月22日）',
+    tag: '臨時休業',
+    body: [
+      '社内研修のため、9月22日(月)は終日休業いたします。緊急のご連絡はメールにてお送りください。'
     ]
   }
 ];
 
-const galleryImages = [
-  { src: '/images/gallery-1.jpg', alt: '店内ディスプレイの様子' },
-  { src: '/images/gallery-2.jpg', alt: '修理スペースの写真' },
-  { src: '/images/gallery-3.jpg', alt: '整備されたノートパソコン' },
-  { src: '/images/gallery-4.jpg', alt: '店舗入口の外観' },
-  { src: '/images/gallery-5.jpg', alt: '周辺道路から見た店舗' },
-  { src: '/images/gallery-6.jpg', alt: '修理用機材のディテール' }
-];
-
-const pricingColumns = [
+const featuredProducts = [
   {
-    title: '診断・サポート',
-    items: [
-      { name: 'データー復旧サービス', price: '初期診断料無料' },
-      { name: 'パソコンクイック診断', price: '500円' },
-      { name: '店頭お困りサポート (1時間)', price: '3,000円' },
-      { name: 'PCトラブル診断 (預かり作業)', price: '3,000円〜' }
-    ]
+    date: '2025.10.08',
+    title: 'dynabook RZ83 モバイルノートリフレッシュ品',
+    tag: 'おすすめ商品',
+    summary:
+      '重量約1kgのハイスペックモバイル。LTE対応モデルで外出先からの接続もスムーズです。',
+    link: '/products/dynabook-rz83-refurb',
+    image: '/images/gallery-3.jpg'
   },
   {
-    title: '修理・アップグレード',
-    items: [
-      { name: 'ウイルス感染削除', price: '6,000円〜' },
-      { name: 'OSリカバリ作業', price: '8,000円〜' },
-      { name: 'OSの最新アップデート', price: '4,000円〜' },
-      { name: 'BIOSアップデート', price: '6,000円〜' },
-      { name: '液晶パネル交換修理', price: '18,000円〜' },
-      { name: 'SSD交換サービス (データーコピー代込)', price: '18,000円〜 / SSD代別途' }
-    ]
+    date: '2025.10.04',
+    title: 'Mac mini (M2) 導入セットアッププラン',
+    tag: 'おすすめ商品',
+    summary:
+      '動画編集やDTMに最適なM2搭載Mac miniを初期設定とソフト導入込みでご提供します。',
+    link: '/products/mac-mini-m2-setup',
+    image: '/images/gallery-6.jpg'
   },
   {
-    title: '訪問・セットアップ',
-    items: [
-      { name: '出張サポート (訪問基本料金1時間)', price: '5,000円' },
-      { name: '追加1時間ごと', price: '+3,000円' },
-      { name: 'パソコン初期設定パック', price: '12,000円' },
-      { name: 'データー移行 (10GB以上は別途お見積り)', price: '内容により変動' }
-    ]
-  }
-];
-
-const windowUpgradeSteps = [
-  'データーはそのままで Windows 11 へアップグレード',
-  '古くて遅いパソコンの買い替えもサポート',
-  'ご自身でのアップグレードが難しい際も丁寧に対応'
-];
-
-const contactInfo = CONTACT_INFO;
-
-const partnerServices = [
-  {
-    title: 'デジタルサイネージ導入支援',
-    description:
-      '店頭や施設の情報発信を強化。企画・機材選定・導入・運用までワンストップでサポートします。',
-    link: '/digital-signage',
-    badge: 'SIGNAGE',
+    date: '2025.10.01',
+    title: 'Dell OptiPlex 7010 SFF 業務用PC',
+    tag: 'おすすめ商品',
+    summary:
+      '省スペース筐体ながら第13世代Core搭載。事務処理からCADまで幅広く活躍します。',
+    link: '/products/dell-optiplex-7010-sff',
     image: '/images/gallery-4.jpg'
   },
   {
-    title: 'リプラス特急データ復旧',
-    description:
-      'Re+PLUS と連携し、重度障害メディアの復旧に対応。初期診断無料でスピーディにお見積りします。',
-    link: '/replus-data-recovery',
-    badge: 'DATA',
-    image: '/images/gallery-6.jpg'
+    date: '2025.09.29',
+    title: 'Panasonic タフブック FZ-G2 中古美品 入荷',
+    tag: 'おすすめ商品',
+    summary:
+      '防塵・防滴仕様で現場でも安心して使える堅牢タブレット。メモリ16GB / SSD 512GB モデルが数量限定で入荷しました。',
+    link: '/products/panasonic-toughbook-fz-g2',
+    image: '/images/gallery-2.jpg'
+  },
+  {
+    date: '2025.09.25',
+    title: 'Brother A4 モノクロレーザー複合機セット',
+    tag: 'おすすめ商品',
+    summary:
+      '高速プリントとネットワークスキャンに対応。SOHO向けに初回消耗品付きで導入サポートいたします。',
+    link: '/products/brother-laser-mfc-setup',
+    image: '/images/gallery-5.jpg'
+  },
+  {
+    date: '2025.09.22',
+    title: 'Lenovo ThinkCentre M90q Gen3 カスタム',
+    tag: 'おすすめ商品',
+    summary:
+      '小型ながら高拡張性のビジネスデスクトップ。メモリ32GBとNVMe 1TBにアップグレード済みです。',
+    link: '/products/lenovo-thinkcentre-m90q',
+    image: '/images/joshua-ng-1sSfrozgiFk-unsplash.jpg'
+  },
+  {
+    date: '2025.09.16',
+    title: 'ASUS ProArt カラーマネージメントディスプレイ',
+    tag: 'おすすめ商品',
+    summary:
+      '4K HDR対応で工場キャリブレーション済み。写真・映像編集の色管理を強力にサポートします。',
+    link: '/products/asus-proart-display',
+    image: '/images/milad-fakurian-t_IkF_CNvSY-unsplash.jpg'
+  },
+  {
+    date: '2025.09.10',
+    title: 'Windows 11 対応の軽量ノート PC 特集',
+    tag: 'おすすめ商品',
+    summary:
+      '持ち運びに便利な 13 インチクラスの新品・中古ノートをピックアップ。用途に合わせたカスタマイズも承ります。',
+    link: '/products/windows11-lightweight-notebooks',
+    image: '/images/onur-binay-auf3GwpVaOM-unsplash.jpg'
   }
 ];
+
+const techBlogPosts = [
+  {
+    date: '2025.10.06',
+    title: 'ゲーミングPCの冷却ファンメンテナンス事例',
+    tag: '技術ブログ',
+    summary:
+      '高発熱CPUを搭載したゲーミングPCの冷却ファン清掃とグリス塗り替えで温度を15℃低減した手順を解説します。',
+    link: '/blog/gaming-pc-dust-cleaning',
+    image: '/images/olivier-collet-JMwCe3w7qKk-unsplash.jpg'
+  },
+  {
+    date: '2025.10.02',
+    title: 'SSDクローンサービスで業務停止を最小化',
+    tag: '技術ブログ',
+    summary:
+      '老朽化したHDDからNVMe SSDへ無停止で移行。バックアップ計画と検証手順を紹介します。',
+    link: '/blog/ssd-clone-service',
+    image: '/images/nathan-anderson-KHSPGJ3zP0M-unsplash.jpg'
+  },
+  {
+    date: '2025.09.28',
+    title: '小規模オフィスのネットワーク再構築',
+    tag: '技術ブログ',
+    summary:
+      'Wi-Fi 6対応アクセスポイントとVLAN設計で社内ネットワークを再構築したプロジェクトレポートです。',
+    link: '/blog/office-network-upgrade',
+    image: '/images/gallery-1.jpg'
+  },
+  {
+    date: '2025.09.24',
+    title: 'NASバックアップで守る設計図面データ',
+    tag: '技術ブログ',
+    summary:
+      'RAID構成のNASとクラウド同期を組み合わせたバックアップ設計のポイントを実例でご紹介します。',
+    link: '/blog/nas-backup-tips',
+    image: '/images/hero.jpg'
+  },
+  {
+    date: '2025.05.12',
+    title: '水没した iPhone のデータ復旧レポート',
+    tag: '技術ブログ',
+    summary:
+      '基板洗浄と部品交換で復旧に成功。バックアップが取れていなかったお客様の大切な写真データを保護できた事例をご紹介します。',
+    link: '/blog/iphone-water-damage-recovery',
+    image: '/images/gallery-6.jpg'
+  },
+  {
+    date: '2025.02.18',
+    title: 'Panasonic CF-33 のSSD換装と高速化',
+    tag: '技術ブログ',
+    summary:
+      '法人様向けに実施したタフブック CF-33 のSSD換装とメモリ増設。作業の流れとベンチマーク改善の結果をまとめました。',
+    link: '/blog/panasonic-cf33-ssd-upgrade',
+    image: '/images/gallery-2.jpg'
+  }
+];
+
+const contactInfo = CONTACT_INFO;
 ---
 
 <MainLayout
@@ -235,145 +236,91 @@ const partnerServices = [
       <div class="news__header">
         <span class="tag">NEWS</span>
         <h2 class="section__title">店舗からのお知らせ</h2>
-        <p class="section__subtitle">入荷情報やサポート情報など、最新ニュースを随時更新しています。</p>
+        <p class="section__subtitle">最新のお知らせ・おすすめ商品・修理事例をカテゴリー別にご紹介します。</p>
       </div>
-      <div class="news__lede">
-        <p>
-          新入荷製品の速報や季節のキャンペーン情報など、JOYPRODUCTからのお知らせを随時発信しています。
-          お近くのお客様も遠方のお客様もぜひチェックしてください。
-        </p>
-      </div>
-      <div class="news__list">
-        {newsItems.map((item) => (
-          <article class="news-card">
-            <div class="news-card__meta">
-              <span class="news-card__date">{item.date}</span>
-              <span class="news-card__tag">お知らせ</span>
-            </div>
-            <h3 class="news-card__title">{item.title}</h3>
-            {item.body.length > 0 ? (
-              <div class="news-card__body">
-                {item.body.map((paragraph) => (
-                  <p>{paragraph}</p>
-                ))}
-              </div>
-            ) : null}
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
+      <div class="news__groups">
+        <section class="news-section news-section--announcements">
 
-  <section class="section section--tight-top" id="campaign">
-    <div class="container hero__campaign-container">
-      <HeroCampaign
-        title="Windows11 アップグレードサポート"
-        description="Windows 10 のサポートは 2025年10月14日で終了。用途とスペックを丁寧に診断し、最適なアップグレード方法をご提案します。"
-        steps={windowUpgradeSteps}
-        image={heroCampaignImage}
-      />
-    </div>
-  </section>
-
-  <section class="section" id="services">
-    <div class="container">
-      <div class="services__header">
-        <span class="tag">SERVICE</span>
-        <h2 class="section__title">幅広いメニューで、お客様のITを支えます</h2>
-        <p class="section__subtitle">診断から復旧、導入支援までトータルサポート。法人・個人問わずお気軽にご相談ください。</p>
-      </div>
-      <div class="services__grid">
-        {services.map((service) => (
-          <article class="service-card">
-            <div class="service-card__icon" aria-hidden="true">{service.icon}</div>
-            <div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-            </div>
-            <ul>
-              {service.points.map((point) => (
-                <li>{point}</li>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section partner-services" id="partner-services">
-    <div class="container">
-      <div class="partner-services__header">
-        <span class="tag">PARTNER SERVICE</span>
-        <h2 class="section__title">専門パートナーと連携した取次サービス</h2>
-        <p class="section__subtitle">
-          JOYPRODUCTが窓口となり、デジタルサイネージ導入や重度データ復旧など専門領域のサービスもスムーズにご案内します。
-        </p>
-      </div>
-      <div class="partner-services__grid">
-        {partnerServices.map((service) => (
-          <article class="partner-card">
-            <figure class="partner-card__media">
-              <img src={service.image} alt={service.title} loading="lazy" />
-            </figure>
-            <div class="partner-card__body">
-              <span class="partner-card__badge">{service.badge}</span>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <a class="partner-card__link" href={service.link}>
-                詳しく見る
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="gallery">
-    <div class="container">
-      <div class="gallery__header">
-        <span class="tag">GALLERY</span>
-        <h2 class="section__title">店舗ギャラリー</h2>
-        <p class="section__subtitle">修理スペースや展示の様子、入荷製品の一部をご紹介します。</p>
-      </div>
-      <div class="gallery__grid">
-        {galleryImages.map((image) => (
-          <figure>
-            <img src={image.src} alt={image.alt} loading="lazy" />
-          </figure>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="menu">
-    <div class="container">
-      <div class="menu__header">
-        <span class="tag">MENU</span>
-        <h2 class="section__title">料金・価格表</h2>
-        <p class="section__subtitle">内容と機種により価格が変動する場合があります。詳細はお気軽にお問い合わせください。</p>
-      </div>
-      <div class="menu__layout">
-        {pricingColumns.map((column) => (
-          <article class="menu-card">
-            <h3>{column.title}</h3>
-            <div class="menu-card__items">
-              {column.items.map((item) => (
-                <div class="menu-line">
-                  <span>{item.name}</span>
-                  <strong>{item.price}</strong>
+          <div class="news__announcements">
+            {storeAnnouncements.slice(0, 4).map((item) => (
+              <article class="news-card news-card--announcement">
+                <div class="news-card__meta-block">
+                  <span class="news-card__date">{item.date}</span>
+                  <span class="news-card__tag">{item.tag}</span>
                 </div>
-              ))}
-            </div>
-          </article>
-        ))}
+                <div class="news-card__content">
+                  <h4 class="news-card__title">{item.title}</h4>
+                  {item.body?.length ? (
+                    <div class="news-card__body">
+                      {item.body.map((paragraph) => (
+                        <p>{paragraph}</p>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="news-section news-section--products" id="featured-products">
+          <div class="news__header news__header--sub">
+            <span class="tag">RECOMMEND</span>
+            <h2 class="section__title">おすすめの商品</h2>
+            <p class="section__subtitle">入荷した最新のおすすめ商品をピックアップしてご紹介します。</p>
+          </div>
+          <div class="news__grid news__grid--products">
+            {featuredProducts.slice(0, 8).map((item) => (
+              <article class="news-card news-card--media">
+                <figure class="news-card__media">
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                </figure>
+                <div class="news-card__content">
+                  <div class="news-card__meta">
+                    <span class="news-card__date">{item.date}</span>
+                    <span class="news-card__tag">{item.tag}</span>
+                  </div>
+                  <h4 class="news-card__title">{item.title}</h4>
+                  <p class="news-card__excerpt">{item.summary}</p>
+                  <a class="news-card__link" href={item.link}>
+                    詳しく見る
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="news-section news-section--blog" id="tech-blog">
+          <div class="news__header news__header--sub">
+            <span class="tag">TECH BLOG</span>
+            <h2 class="section__title">技術ブログ</h2>
+            <p class="section__subtitle">修理実績や運用ノウハウなど、技術スタッフによる最新記事をまとめています。</p>
+          </div>
+          <div class="news__grid news__grid--blog">
+            {techBlogPosts.slice(0, 6).map((item) => (
+              <article class="news-card news-card--media">
+                <figure class="news-card__media">
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                </figure>
+                <div class="news-card__content">
+                  <div class="news-card__meta">
+                    <span class="news-card__date">{item.date}</span>
+                    <span class="news-card__tag">{item.tag}</span>
+                  </div>
+                  <h4 class="news-card__title">{item.title}</h4>
+                  <p class="news-card__excerpt">{item.summary}</p>
+                  <a class="news-card__link" href={item.link}>
+                    詳しく見る
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
-      <p class="menu__note">
-        ※ 表示価格はすべて税別です。部品・材料等が必要な場合は別途費用がかかります。<br />
-        ※ サービス内容は一例です。その他「こんなことできる？」というご相談もお気軽にお寄せください。
-      </p>
     </div>
   </section>
 
