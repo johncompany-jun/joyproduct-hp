@@ -461,9 +461,15 @@
 }
 
 .news-card--media .news-card__content {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.8rem;
   padding: clamp(1.2rem, 2.5vw, 1.6rem);
+  flex: 1;
+}
+
+.news-card--media .news-card__link {
+  margin-top: auto;
 }
 
 .news__grid {
