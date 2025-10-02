@@ -4,18 +4,13 @@ import { SITE_TITLE, SITE_DESCRIPTION, CONTACT_INFO } from '../consts';
 import ContactSection from '../components/ContactSection.astro';
 import '../styles/home.css';
 
-const heroHighlights = [
-  'パソコン販売・修理',
-  'インターネットサポート',
-  'データー復旧・ウイルス削除 etc'
-];
-
-const heroBackgrounds = [
-  '/images/joshua-ng-1sSfrozgiFk-unsplash.jpg',
-  '/images/milad-fakurian-t_IkF_CNvSY-unsplash.jpg',
-  '/images/nathan-anderson-KHSPGJ3zP0M-unsplash.jpg',
-  '/images/olivier-collet-JMwCe3w7qKk-unsplash.jpg',
-  '/images/onur-binay-auf3GwpVaOM-unsplash.jpg'
+const heroSlides = [
+  '/images/gallery-1.jpg',
+  '/images/gallery-2.jpg',
+  '/images/gallery-3.jpg',
+  '/images/gallery-4.jpg',
+  '/images/gallery-5.jpg',
+  '/images/gallery-6.jpg'
 ];
 
 const storeAnnouncements = [
@@ -192,41 +187,40 @@ const contactInfo = CONTACT_INFO;
   title={`${SITE_TITLE} | 京都・上京区のパソコン販売・修理ショップ`}
   description={SITE_DESCRIPTION}
 >
-  <section class="section hero" id="home">
+  <section class="section hero hero--cta-only" id="home">
     <div class="hero__slider" aria-hidden="true">
-      {heroBackgrounds.map((src, index) => (
-        <div class:list={[
-          'hero__slide',
-          `hero__slide--${index}`
-        ]} style={`background-image: url(${src});`}></div>
+      {heroSlides.map((src, index) => (
+        <div
+          class="hero__slide"
+          style={`--slide-index: ${index}; background-image: url(${src});`}
+        ></div>
       ))}
       <div class="hero__overlay-mask"></div>
     </div>
-    <div class="container hero__grid">
-      <div class="hero__content">
-        <span class="tag hero__badge">京都・上京区のPC専門店</span>
-        <h1 class="hero__title">
-          パソコン・スマホの「困った」は<br />
-          JOYPRODUCTにお任せください
-        </h1>
-        <p class="hero__lead">
-          販売・修理・データー復旧・ITサポートまで。地域密着で、お客様の用途やご予算に合わせたベストな解決策をご提案します。
-        </p>
-        <ul class="hero__list">
-          {heroHighlights.map((item, index) => (
-            <li>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              {item}
-            </li>
-          ))}
-        </ul>
-        <div class="hero__cta">
-          <a class="primary" href="#contact">お問い合わせ</a>
-          <a class="secondary" href="tel:0753346522">お電話 075-334-6522</a>
+    <div class="hero__branding" aria-hidden="true">
+      <div class="hero__branding-col hero__branding-col--primary">
+        <div class="hero__branding-text hero__branding-text--main">
+          <img
+            src="/images/hero-text1.png"
+            alt="JOYPRODUCT キャッチコピー"
+            loading="lazy"
+          />
         </div>
       </div>
-      <div class="hero__media">
-        <img src="/images/hero.jpg" alt="JOYPRODUCT 店舗の展示" loading="lazy" />
+      <div class="hero__branding-col hero__branding-col--supporting">
+        <div class="hero__branding-text hero__branding-text--services">
+          <img
+            src="/images/hero-text2.png"
+            alt="パソコン販売・修理などのサービス紹介"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="container hero__cta-wrapper">
+      <div class="hero__cta">
+        <a class="primary" href="#contact">お問い合わせ</a>
+        <a class="secondary" href="tel:0753346522">お電話 075-334-6522</a>
       </div>
     </div>
   </section>
